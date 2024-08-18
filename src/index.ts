@@ -1,27 +1,49 @@
 // bring in any libraries or other files we need
 import inquirer from 'inquirer';
-import { Database } from './database';
-import (Postgres) from 'pg';
+import { QueryResult } from 'pg';
+import { pool, connectToDb } from './connection.js';
 
-
+await connectToDb();
 //main fuction or inquirer function to ask user questions
 
-performActions(): void {
-        inquirer
-          .prompt([
-            {
-              type: 'list',
-              name: 'action',
-              message: 'Select an action',
-              choices: [
-                'View all employees',
-                'Add Employee',
-                
-            };
-                      }),
-                    },
-                  ])
+const performActions = () void => {
 
+  inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'action',
+        message: 'Select an action',
+        choices: [
+          'View all employees',
+          'Add Employee',
+          'Update Employee Role',
+          'View All Roles',
+          'Add Role',
+          'View All Departments',
+          'Add Departments',
+          'quit',
+        ],
+      },
+    ])
+
+    .then((answers) => {
+//look into using a switch statment on this line
+//use the case keyword
+//create a const
+//input SELECT, FROM, JOIN, JOIN, LEFT JOIN
+
+//next create a pool
+
+//create additional cases for each additional prompt
+
+
+    }
+}
+
+performActions(): void {
+
+}
 //this is async which will also use a .then and .catch
 
 //some kind of conditional statement within the .then statement
@@ -59,29 +81,6 @@ performActions(): void {
 //   });
 //   }
 
-// performActions(): void {
-//     inquirer
-//       .prompt([
-//         {
-//           type: 'list',
-//           name: 'action',
-//           message: 'Select an action',
-//           choices: [
-//             'Print details',
-//             'Start vehicle',
-//             'Accelerate 5 MPH',
-//             'Decelerate 5 MPH',
-//             'Stop vehicle',
-//             'Turn right',
-//             'Turn left',
-//             'Reverse',
-//             'Tow',
-//             'Wheelie',
-//             'Select or create another vehicle',
-//             'Exit',
-//           ],
-//         },
-//       ])
 //       .then((answers) => {
 //         // perform the selected action
 //         if (answers.action === 'Print details') {
@@ -105,7 +104,7 @@ performActions(): void {
 //               this.vehicles[i].accelerate(5);
 //             }
 //           }
-//   
+//
 //             }
 //           }
 //         }

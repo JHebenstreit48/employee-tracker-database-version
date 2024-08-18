@@ -5,18 +5,17 @@ CREATE DATABASE employeetracker_db;
 
 CREATE TABLE department (
   id SERIAL PRIMARY KEY,
-  department_name VARCHAR(30) NOT NULL
+  name VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE role (
     id SERIAL PRIMARY KEY,
-    department_id INTEGER NOT NULL
+    department_id INTEGER NOT NULL,
     title VARCHAR(30) UNIQUE NOT NULL,
     salary DECIMAL NOT NULL,
-    FOREIGN KEY (department_id)
-    REFERENCES department(id)
+    FOREIGN KEY (name id)
+    REFERENCES name(id)
     ON DELETE SET NULL
-    
 );
 
 CREATE TABLE employee (
@@ -25,4 +24,7 @@ CREATE TABLE employee (
     last_name VARCHAR(30) NOT NULL,
     role_id INTEGER NOT NULL,
     manager_id INTEGER,
+    FOREIGN KEY (role_id)
+    REFERENCES role(id)
+    ON DELETE SET NULL
 );

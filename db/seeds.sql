@@ -10,11 +10,15 @@ VALUES ('Marketing'),
        ('Accounting');
 
 
-INSERT INTO role (movie_id, review)
-VALUES (1, 'Zazu is underrated. Give that hornbill a sequel!'),
-       (2, 'I''m gonna make him an offer you can''t refuse, watch this movie'),
-       (1, 'Scar is the lion everyone loves to hate'),
-       (3, 'Ten years of ballet and three years of tap to join a gang in this neighborhood'),
-       (5, 'The tin man gave a metallic, hollow performance'),
-       (1, 'Hakuna matata'),
-       (5, 'Those flying monkeys are nightmare fuel!');
+INSERT INTO role (department_id, tile, salary)
+VALUES (1, 'Marketing Manager', 155700),
+       (2, ''),
+       (1, ''),
+       (3, ''),
+       (5, ''),
+       (1, ''),
+       (5, ''),
+       (6, ''),
+       (7, ''),
+       (8, ''),
+       (9, '');
