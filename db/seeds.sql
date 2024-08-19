@@ -7,7 +7,7 @@ VALUES ('Marketing'),
        ('Customer Service');
 
 
-INSERT INTO role (department_id, tile, salary)
+INSERT INTO role (department_id, title, salary)
 VALUES (1, 'Marketing Manager', 155700),
        (1, 'Marketing Assistant', 46000 ),
        (2, 'HR Manager', 155700 ),
@@ -22,7 +22,7 @@ VALUES (1, 'Marketing Manager', 155700),
        (5, 'Reagents Technician', 52000 ),
        (6, 'Call Center Manager', 65800 ),
        (6, 'Customer Service Representative', 39000 ),
-       (6, 'Customer Service Representative', 39000 );
+       (6, 'Customer Service Associate', 42000 );
 
 Insert INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ('John', 'Doe', 1, NULL),
