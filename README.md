@@ -30,15 +30,16 @@ Using the command line to add or look up various information on different employ
 ## Contributions
 
 GitHub CoPilot did provide suggestions on code. I also used the following Zoom links and other resources as well. I also had assistance from Bryce Berczik. I also used elements from the class repository.
-[text](https://www.google.com/search?q=Generic+departments+that+most+businesses+use&oq=Generic+departments+that+most+businesses+use&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRirAtIBCDk1NjhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8),
 [text](https://zoom.us/rec/play/UvG7oFsk1pk2XYTU3yKfF7ORoxaet41GvhEs4VJdAF9iyFe28luz53VLZMIl9BsrgLzIanhi8jZz1ltF.N13wqtm-ktMTYnGD),
 [text](https://zoom.us/rec/play/ueao0xO0cI1Hz2Olj3LmqiJLRcyTdxCX4c7eOAriny6iUbEqal3Gu_9ikSUMvoqBdMg1eiR7rIVRnbiy.ZG30IHeVLpzzeRlN),
 [text](https://node-postgres.com/features/pooling),
 [text](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-unique-constraint/),
-[text](https://www.google.com/search?q=What+are+some+different+titles+for+marketing+roles&oq=What+are+some+different+titles+for+marketing+roles&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCDc3MDlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8),
-[text](https://www.google.com/search?q=average+marketing+manager+salary&oq=Average+marketing+manager+salary&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyBwgIEAAYgAQyBwgJEAAYgATSAQoxMDAwNmowajE1qAIIsAIB&sourceid=chrome&ie=UTF-8),
 [text](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786),
-[text](https://www.google.com/search?q=what+is+the+command+to+install+an+npm+package+as+a+developer+dependency&sca_esv=80a930aee8f476b4&ei=ZkfBZqvCJeSawbkPzvibKQ&ved=0ahUKEwirjfadq_2HAxVkTTABHU78JgUQ4dUDCA8&uact=5&oq=what+is+the+command+to+install+an+npm+package+as+a+developer+dependency&gs_lp=Egxnd3Mtd2l6LXNlcnAiR3doYXQgaXMgdGhlIGNvbW1hbmQgdG8gaW5zdGFsbCBhbiBucG0gcGFja2FnZSBhcyBhIGRldmVsb3BlciBkZXBlbmRlbmN5SIgXUJwLWJYVcAJ4AZABAJgBb6ABjAOqAQMzLjG4AQPIAQD4AQGYAgKgAgrCAgoQABiwAxjWBBhHmAMAiAYBkAYIkgcBMqAHggc&sclient=gws-wiz-serp)
+[text](https://www.google.com/search?q=what+is+the+command+to+install+an+npm+package+as+a+developer+dependency&sca_esv=80a930aee8f476b4&ei=ZkfBZqvCJeSawbkPzvibKQ&ved=0ahUKEwirjfadq_2HAxVkTTABHU78JgUQ4dUDCA8&uact=5&oq=what+is+the+command+to+install+an+npm+package+as+a+developer+dependency&gs_lp=Egxnd3Mtd2l6LXNlcnAiR3doYXQgaXMgdGhlIGNvbW1hbmQgdG8gaW5zdGFsbCBhbiBucG0gcGFja2FnZSBhcyBhIGRldmVsb3BlciBkZXBlbmRlbmN5SIgXUJwLWJYVcAJ4AZABAJgBb6ABjAOqAQMzLjG4AQPIAQD4AQGYAgKgAgrCAgoQABiwAxjWBBhHmAMAiAYBkAYIkgcBMqAHggc&sclient=gws-wiz-serp),
+[text](https://www.digitalocean.com/community/tutorials/how-to-use-the-switch-statement-in-javascript),
+[text](https://www.google.com/search?q=what+does+break+do+in+JavaScript+switch+statements&oq=what+does+break+do+in+JavaScript+switch+statements&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCDk4MDhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8),
+[text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements),
+[text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
 
 
 I received the following code from Bryce Berczik:
