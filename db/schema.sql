@@ -2,9 +2,9 @@ DROP DATABASE IF EXISTS employeetracker_db;
 CREATE DATABASE employeetracker_db;
 
 \c employeetracker_db;
-\c postgres;
-\i db/schema.sql;
-\i db/seeds.sql;
+-- \c postgres;
+-- \i db/schema.sql;
+
 
 CREATE TABLE department (
   id SERIAL PRIMARY KEY,
