@@ -39,7 +39,12 @@ GitHub CoPilot did provide suggestions on code. I also used the following Zoom l
 [text](https://www.digitalocean.com/community/tutorials/how-to-use-the-switch-statement-in-javascript),
 [text](https://www.google.com/search?q=what+does+break+do+in+JavaScript+switch+statements&oq=what+does+break+do+in+JavaScript+switch+statements&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCDk4MDhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8),
 [text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements),
-[text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+[text](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch),
+[text](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-delete-cascade/),
+[text](https://www.w3schools.com/postgresql/postgresql_insert_into.php),
+[text](https://www.w3schools.com/postgresql/postgresql_update.php),
+[text](https://www.w3schools.com/postgresql/postgresql_delete.php),
+[text](https://www.w3schools.com/postgresql/postgresql_joins.php)
 
 
 I received the following code from Bryce Berczik:
@@ -73,6 +78,12 @@ I received the following code from Bryce Berczik:
 He also provided me with the following code:
 
 const performActions = () void => {}
+
+FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL;
+
+I also had assistance from Alexis Javier.
+
+I did get some advice in various sections from GitHub Copilot and Xpert Learning Assistant on code to enter.
 
 ## Tests
 

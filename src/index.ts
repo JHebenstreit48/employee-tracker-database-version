@@ -6,8 +6,10 @@ await connectToDb();
 //main fuction or inquirer function to ask user questions
 
 const client = await pool.connect()
-
-
+async function queryDatabase(query: string, args: any[]) {
+  const result = await client.query(query, args);
+  return result;
+}
 const performActions = (): void => {
 
   inquirer
@@ -37,19 +39,91 @@ const performActions = (): void => {
           break
 
         case 'Add Employee':
-          addEmployee()
+          inquirer.prompt([
+            {
+              type: 'input',
+              name: 'firstName',
+              message: 'What is the employeees first name?'
+            },
+            {
+              type: 'input',
+              name: 'lastName',
+              message: 'What is the employeees last name?'
+            },
+            {
+              type: 'input',
+              name: 'roleID',
+              message: 'Enter the role ID'
+            },
+            {
+              type: 'input',
+              name: 'managerID',
+              message: 'Enter the manager ID'
+            }
+          ])
+          .then((answers) => {
+            addEmployee(answers.firstName, answers.lastName, answers.role_id, answers.managerID)
+          })
           break
 
         case 'Update Employee Role':
-          updateEmployeeRole()
-          break
+          inquirer.prompt([
+            {
+              type: 'input',
+              name: 'employeeID',
+              message: 'Enter the employee ID'
+            },
+            {
+              type: 'input',
+              name: 'roleID',
+              message: 'Enter the role ID'
+            }
+          ])
+          .then((answers) => {
+            updateEmployeeRole(answers.employeeID, answers.roleID)
+          });
+          break;
 
         case 'View All Roles':
           viewAllRoles()
           break
 
           case 'Add Role':
-          addRole()
+            // query the database for all departments
+            const departmentChoices: any[] = [];
+            getAllDepartments().then(data => {
+              console.log(data.rows);
+              
+              const departments = data.rows;
+              departments.forEach(department => {
+                departmentChoices.push(department)
+              })
+            }
+            );
+
+            console.log(departmentChoices);
+            inquirer.prompt([
+              {
+                type: 'list',
+                name: 'action',
+                message: 'Please select a department.',
+                choices: ['test']
+              },
+              {
+                type: 'input',
+                name: 'title',
+                message: 'Please enter the role title.'
+              },
+              {
+                type: 'input',
+                name: 'salary',
+                message: 'Please enter the salary for this role.'
+              }
+            ])
+            .then((answers) => {
+              console.log(answers);
+              addRole(answers.title, answers.salary, answers.departmentID)
+            })
           break
 
           case 'View All Departments':
@@ -57,7 +131,16 @@ const performActions = (): void => {
           break
 
           case 'Add Departments':
-          addDepartments()
+            inquirer.prompt([
+              {
+                type: 'input',
+                name: 'departmentName',
+                message: 'Enter the department name'
+              }
+            ])
+            .then((answers) => {
+              addDepartments(answers.departmentName)
+            })
           break
 
           case 'Quit':
@@ -65,89 +148,93 @@ const performActions = (): void => {
           break
       }
     })
-  //look into using a switch statment on this line
-  //use the case keyword
-  //create a const
-  //input SELECT, FROM, JOIN, JOIN, LEFT JOIN
-
-  //next create a pool
-
-  //create additional cases for each additional prompt
 }
-
 
 function viewAllEmployees() {
   client.query('SELECT * FROM EMPLOYEE', function (error, data) {
     if (error) {
       console.log(error)
     }
-      console.log(data);
-
+      console.table(data.rows);
+      performActions()
   })
 }
 
-function addEmployee() {
-  client.query('', function(error, data) {
+function addEmployee(firstName: string, lastName: string, roleID: number, managerID: number) {
+  client.query('INSERT INTO EMPLOYEE (name) VALUES ($1)', [firstName, lastName, roleID, managerID], function(error, data) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.table(data.rows)
+    performActions()
   }) 
 }
 
-function updateEmployeeRole() {
-  client.query('', function(error, data) {
+function updateEmployeeRole(employeeID: number, newRoleId: number) {
+  const updateQuery = `UPDATE EMPLOYEE SET role_id = $1 WHERE id = $2`
+  client.query(updateQuery, [newRoleId, employeeID], function(error, data) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.table(data.rows)
+    performActions()
   }) 
 }
 
 function viewAllRoles() {
-  client.query('', function(error, data) {
+  client.query('SELECT * FROM ROLE', function(error, data) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.table(data.rows)
+    performActions()
   }) 
 }
 
-function addRole() {
-  client.query('', function(error, data) {
+
+function addRole(title: string, salary: number, departmentID: number) {
+  client.query('SELECT * FROM DEPARTMENT', function(error, departmentData) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.log(departmentData.rows)
+  client.query('INSERT INTO ROLE (title, salary, department_id) VALUES ($1, $2, $3)', [title, salary, departmentID], function(error, data) {
+    if (error) {
+      console.log(error)
+    }
+    console.table(data.rows)
+    performActions()
   }) 
+})
 }
 
 function viewAllDepartments() {
-  client.query('', function(error, data) {
+  client.query('SELECT * FROM DEPARTMENT', function(error, data) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.table(data.rows)
+    performActions()
   }) 
 }
 
-function addDepartments() {
-  client.query('', function(error, data) {
+function getAllDepartments() {
+  return queryDatabase('SELECT * FROM DEPARTMENT;', []);
+}
+
+function addDepartments(departmentName: string) {
+  client.query('INSERT INTO DEPARTMENT (name) VALUES ($1)', [departmentName], function(error, data) {
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    console.table(data.rows)
+    performActions()
   }) 
 }
 
 function quit() {
-  client.query('', function(error, data) {
-    if (error) {
-      console.log(error)
-    }
-    console.log(data)
-  }) 
-}
+  process.exit(0)
+  }
 
 performActions()
 
