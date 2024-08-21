@@ -24,7 +24,7 @@ VALUES (1, 'Marketing Manager', 155700),
        (6, 'Customer Service Representative', 39000 ),
        (6, 'Customer Service Associate', 42000 );
 
-Insert INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ('John', 'Doe', 1, NULL),
        ('Jane', 'Doe', 2, 1),
        ('Jeremy', 'Wade', 3, NULL),
