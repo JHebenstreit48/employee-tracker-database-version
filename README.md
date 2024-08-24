@@ -44,7 +44,10 @@ GitHub CoPilot did provide suggestions on code. I also used the following Zoom l
 [text](https://www.w3schools.com/postgresql/postgresql_insert_into.php),
 [text](https://www.w3schools.com/postgresql/postgresql_update.php),
 [text](https://www.w3schools.com/postgresql/postgresql_delete.php),
-[text](https://www.w3schools.com/postgresql/postgresql_joins.php)
+[text](https://www.w3schools.com/postgresql/postgresql_joins.php),
+[text](https://www.w3schools.com/postgresql/postgresql_joins.php),
+[text](https://www.postgresql.org/docs/current/sql-update.html#:~:text=The%20syntax%20of%20the%20RETURNING,in%20the%20expressions%20or%20condition%20.),
+[text](https://www.w3schools.com/postgresql/postgresql_insert_into.php)
 
 
 I received the following code from Bryce Berczik:
