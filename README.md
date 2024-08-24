@@ -18,7 +18,9 @@
 
 ## Installation
 
-N/A
+Video for how to use the application.
+
+[text](https://github.com/JHebenstreit48/employee-tracker-database-version)
 
 ## Usage
 
