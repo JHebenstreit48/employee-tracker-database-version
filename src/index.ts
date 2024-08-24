@@ -31,7 +31,7 @@ const performActions = (): void => {
       }
     ])
 
-    .then((answers) => {
+    .then(async (answers) => {
       switch (answers.action) {
         case 'View all employees':
           viewAllEmployees()
@@ -43,107 +43,127 @@ const performActions = (): void => {
             {
               type: 'input',
               name: 'firstName',
-              message: 'What is the employeees first name?'
+              message: 'What is the employees first name?'
             },
             {
               type: 'input',
               name: 'lastName',
-              message: 'What is the employeees last name?'
+              message: 'What is the employees last name?'
             },
             {
               type: 'input',
-              name: 'roleID',
+              name: 'roleId',
               message: 'Enter the role ID'
             },
             {
               type: 'input',
-              name: 'managerID',
+              name: 'ManagerId',
               message: 'Enter the manager ID'
             }
           ])
-          .then((answers) => {
-            addEmployee(answers.firstName, answers.lastName, answers.role_id, answers.managerID)
-          })
+            .then((answers) => {
+              addEmployee(answers.firstName, answers.lastName, answers.roleId, answers.ManagerId)
+            })
           break
 
         case 'Update Employee Role':
           inquirer.prompt([
             {
               type: 'input',
-              name: 'employeeID',
+              name: 'employeeId',
               message: 'Enter the employee ID'
             },
             {
               type: 'input',
-              name: 'roleID',
+              name: 'roleId',
               message: 'Enter the role ID'
             }
           ])
-          .then((answers) => {
-            updateEmployeeRole(answers.employeeID, answers.roleID)
-          });
+            .then((answers) => {
+              updateEmployeeRole(answers.employeeId, answers.roleId)
+            });
           break;
 
         case 'View All Roles':
           viewAllRoles()
           break
 
-          case 'Add Role':
-            // query the database for all departments
-            const departmentChoices: any[] = [];
-            getAllDepartments().then(data => {
-              console.log(data.rows);
-              
-              const departments = data.rows;
-              departments.forEach(department => {
-                departmentChoices.push(department)
-              })
+        case 'Add Role':
+          // query the database for all departments
+          const departmentChoices: any[] = [];
+          const data = await getAllDepartments()
+          const departments = data.rows;
+          departments.forEach(department => {
+            departmentChoices.push(department)
+          })
+          console.log(departmentChoices);
+          inquirer.prompt([
+            {
+              type: 'list',
+              name: 'departmentNameWithValue',
+              message: 'Please select a department.',
+              choices: [
+                {
+                  value: 1,
+                  name: '1: Marketing'
+                },
+                {
+                  value: 2,
+                  name: '2: Human Resources'
+                },
+                {
+                  value: 3,
+                  name: '3: IT'
+                },
+                {
+                  value: 4,
+                  name: '4: Finance'
+                },
+                {
+                  value: 5,
+                  name: '5: Research and Development'
+                },
+                {
+                  value: 6,
+                  name: '6: Customer Service'
+                }
+              ]
+            },
+            {
+              type: 'input',
+              name: 'title',
+              message: 'Please enter the role title.'
+            },
+            {
+              type: 'input',
+              name: 'salary',
+              message: 'Please enter the salary for this role.'
             }
-            );
-
-            console.log(departmentChoices);
-            inquirer.prompt([
-              {
-                type: 'list',
-                name: 'action',
-                message: 'Please select a department.',
-                choices: ['test']
-              },
-              {
-                type: 'input',
-                name: 'title',
-                message: 'Please enter the role title.'
-              },
-              {
-                type: 'input',
-                name: 'salary',
-                message: 'Please enter the salary for this role.'
-              }
-            ])
+          ])
             .then((answers) => {
               console.log(answers);
-              addRole(answers.title, answers.salary, answers.departmentID)
+              addRole(answers.title, answers.salary, answers.departmentNameWithValue)
             })
           break
 
-          case 'View All Departments':
+        case 'View All Departments':
           viewAllDepartments()
           break
 
-          case 'Add Departments':
-            inquirer.prompt([
-              {
-                type: 'input',
-                name: 'departmentName',
-                message: 'Enter the department name'
-              }
-            ])
+        case 'Add Departments':
+          inquirer.prompt([
+            {
+              type: 'input',
+              name: 'departmentName',
+              message: 'Enter the department name'
+            }
+          ])
             .then((answers) => {
               addDepartments(answers.departmentName)
             })
           break
 
-          case 'Quit':
+        case 'Quit':
           quit()
           break
       }
@@ -155,67 +175,67 @@ function viewAllEmployees() {
     if (error) {
       console.log(error)
     }
-      console.table(data.rows);
-      performActions()
+    console.table(data.rows);
+    performActions()
   })
 }
 
-function addEmployee(firstName: string, lastName: string, roleID: number, managerID: number) {
-  client.query('INSERT INTO EMPLOYEE (name) VALUES ($1)', [firstName, lastName, roleID, managerID], function(error, data) {
+function addEmployee(firstName: string, lastName: string, roleId: number, ManagerId: number) {
+  client.query('INSERT INTO EMPLOYEE (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)', [firstName, lastName, roleId, ManagerId], function (error, data) {
     if (error) {
       console.log(error)
     }
     console.table(data.rows)
     performActions()
-  }) 
+  })
 }
 
-function updateEmployeeRole(employeeID: number, newRoleId: number) {
+function updateEmployeeRole(employeeId: number, newroleId: number) {
   const updateQuery = `UPDATE EMPLOYEE SET role_id = $1 WHERE id = $2`
-  client.query(updateQuery, [newRoleId, employeeID], function(error, data) {
+  client.query(updateQuery, [newroleId, employeeId], function (error, data) {
     if (error) {
       console.log(error)
     }
     console.table(data.rows)
     performActions()
-  }) 
+  })
 }
 
 function viewAllRoles() {
-  client.query('SELECT * FROM ROLE', function(error, data) {
+  client.query('SELECT * FROM ROLE', function (error, data) {
     if (error) {
       console.log(error)
     }
     console.table(data.rows)
     performActions()
-  }) 
+  })
 }
 
 
-function addRole(title: string, salary: number, departmentID: number) {
-  client.query('SELECT * FROM DEPARTMENT', function(error, departmentData) {
+function addRole(title: string, salary: number, departmentNameWithValue: number) {
+  client.query('SELECT * FROM DEPARTMENT', function (error, departmentData) {
     if (error) {
       console.log(error)
     }
     console.log(departmentData.rows)
-  client.query('INSERT INTO ROLE (title, salary, department_id) VALUES ($1, $2, $3)', [title, salary, departmentID], function(error, data) {
-    if (error) {
-      console.log(error)
-    }
-    console.table(data.rows)
-    performActions()
-  }) 
-})
+    client.query('INSERT INTO ROLE (title, salary, department_id) VALUES ($1, $2, $3)', [title, salary, departmentNameWithValue], function (error, data) {
+      if (error) {
+        console.log(error)
+      }
+      console.table(data.rows)
+      performActions()
+    })
+  })
 }
 
 function viewAllDepartments() {
-  client.query('SELECT * FROM DEPARTMENT', function(error, data) {
+  client.query('SELECT * FROM DEPARTMENT', function (error, data) {
     if (error) {
       console.log(error)
     }
     console.table(data.rows)
     performActions()
-  }) 
+  })
 }
 
 function getAllDepartments() {
@@ -223,18 +243,18 @@ function getAllDepartments() {
 }
 
 function addDepartments(departmentName: string) {
-  client.query('INSERT INTO DEPARTMENT (name) VALUES ($1)', [departmentName], function(error, data) {
+  client.query('INSERT INTO DEPARTMENT (name) VALUES ($1)', [departmentName], function (error, data) {
     if (error) {
       console.log(error)
     }
     console.table(data.rows)
     performActions()
-  }) 
+  })
 }
 
 function quit() {
   process.exit(0)
-  }
+}
 
 performActions()
 
